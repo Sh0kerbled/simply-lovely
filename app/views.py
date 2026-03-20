@@ -3,6 +3,6 @@ from .models import Categories
 
 def main_page(request):
     context = {
-        'title': Categories.objects.all()
+        'categories': Categories.objects.all()
     }
-    return render(request, 'index.html')
+    return render(request, 'index.html', context)
