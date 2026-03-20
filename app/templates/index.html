@@ -46,13 +46,13 @@
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {% for cat in categories %}
+      {% for category in categories %}
       <div
         class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-muted"
       >
         <img
-          src="{{ cat.image.url }}"
-          alt="{{ cat.title }}"
+          src="{{ category.image.url }}"
+          alt="{{ category.title }}"
           class="h-full w-full object-cover transition-transform group-hover:scale-110"
         />
 
@@ -60,7 +60,7 @@
           class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
         ></div>
         <div class="absolute bottom-0 left-0 right-0 p-6">
-          <h3 class="text-xl text-white">{{ cat.title }}</h3>
+          <h3 class="text-xl text-white">{{ category.title }}</h3>
         </div>
       </div>
       {% endfor %}
