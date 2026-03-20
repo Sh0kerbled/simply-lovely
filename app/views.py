@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from .models import Categories
 
-# Create your views here.
+def main_page(request):
+    context = {
+        'title': Categories.objects.all()
+    }
+    return render(request, 'index.html')
