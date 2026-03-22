@@ -7,7 +7,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_page),
+    path('', main_page, name='home'),
     path('auth/', auth_page, name='auth'),
     path('join/', join_page, name='join'),
 ]

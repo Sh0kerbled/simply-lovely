@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'tailwind',
-    'core',
     'app',
     'users',
 ]
@@ -112,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'kk'
 
 TIME_ZONE = 'UTC'
 
@@ -140,3 +139,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
 HOUSAND_SEPARATOR = ' '
+
+AUTH_USER_MODEL = 'users.CustomUser'
