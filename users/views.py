@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
-def main_page(request):
-    return render(request, 'index.html')
+def auth_page(request):
+    return render(request, 'auth.html')
+
+def join_page(request):
+    return render(request, 'register.html')
