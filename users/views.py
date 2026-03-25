@@ -1,27 +1,18 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from .forms import SignUpForm, LoginForm
+from django.shortcuts import render, redirect, HttpResponseRedirect, messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 def auth_page(request):
-    form = LoginForm(data=request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            full_name = form.cleaned_data['full_name']
-            password = form.cleaned_data['password']
-            user = authenticate(full_name=full_name, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
+    return render(request, 'auth.html')
 
-    return render(request, 'auth.html', {'form': form})
-
-def join_page(request):
+def register(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request,user)
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'register.html', {'form': form})
+            new_user = form.save()
+            messages.info(request, "Thanks for registering. You are now logged in.")
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+            return HttpResponseRedirect("/dashboard/")
