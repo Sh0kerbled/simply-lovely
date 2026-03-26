@@ -32,7 +32,7 @@
               {% csrf_token %}
               {{form}}
               <button type="submit">submit</button>
-              {% comment %} <div>
+              <div>
                 <label
                   for="name"
                   class="block text-sm font-medium text-gray-700"
@@ -126,9 +126,8 @@
                     placeholder="••••••••"
                   />
                 </div>
-              </div> {% endcomment %}
+              </div>
 
-              {% comment %}
               <div>
                 <label
                   for="confirm password"
@@ -160,7 +159,6 @@
                   />
                 </div>
               </div>
-              {% endcomment %}
 
               <div class="flex items-center">
                 <input
