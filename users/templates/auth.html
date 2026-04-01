@@ -20,7 +20,7 @@
             <p class="mt-2 text-sm text-gray-500">
               Or
               <a
-                href="{%url 'join'%}"
+                href="{%url 'users:join_page'%}"
                 class="font-medium text-blue-600 hover:text-blue-500 transition-colors"
                 >create a new account</a
               >
@@ -28,12 +28,17 @@
           </div>
 
           <div class="mt-8">
-            <form action="#" method="POST" class="space-y-6">
+            <form
+              action="{% url 'users:auth_page' %}"
+              method="POST"
+              class="space-y-6"
+            >
+              {% csrf_token %}
               <div>
                 <label
-                  for="email"
+                  for="username"
                   class="block text-sm font-medium text-gray-700"
-                  >Email address</label
+                  >name</label
                 >
                 <div class="mt-2 relative flex items-center">
                   <svg
@@ -50,9 +55,9 @@
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    id="username"
+                    name="username"
+                    type="text"
                     autocomplete="email"
                     required
                     class="block w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 placeholder-gray-400 shadow-sm focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900/50 sm:text-sm transition-all"

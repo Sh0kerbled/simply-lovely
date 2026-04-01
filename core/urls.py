@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app.views import main_page
 from users.views import auth_page, join_page
 from django.conf.urls.static import static
@@ -10,8 +10,7 @@ app_name = 'users'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_page, name='home'),
-    path('auth/', auth_page, name='auth'),
-    path('join/', join_page, name='join'),
+    path('users/', include('users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:
