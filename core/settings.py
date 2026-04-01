@@ -140,4 +140,4 @@ USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
 HOUSAND_SEPARATOR = ' '
 
-# AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
