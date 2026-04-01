@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserRegistrationForm
 
 def auth_page(request):
     if request.method == 'POST':
@@ -21,4 +21,13 @@ def auth_page(request):
     return render(request, 'auth.html', context)
 
 def join_page(request):
-    return render(request, 'register.html')
+    if request.method == 'POST':
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:auth_page'))
+    else:
+        form = UserRegistrationForm()
+
+    context = {'form': form}
+    return render(request, 'register.html', context)

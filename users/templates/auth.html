@@ -38,7 +38,7 @@
                 <label
                   for="username"
                   class="block text-sm font-medium text-gray-700"
-                  >name</label
+                  >Username</label
                 >
                 <div class="mt-2 relative flex items-center">
                   <svg
@@ -54,15 +54,7 @@
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    autocomplete="email"
-                    required
-                    class="block w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 placeholder-gray-400 shadow-sm focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900/50 sm:text-sm transition-all"
-                    placeholder="you@example.com"
-                  />
+                  {{form.username}}
                 </div>
               </div>
 
@@ -86,15 +78,7 @@
                     <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autocomplete="current-password"
-                    required
-                    class="block w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 placeholder-gray-400 shadow-sm focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900/50 sm:text-sm transition-all"
-                    placeholder="••••••••"
-                  />
+                  {{form.password}}
                 </div>
               </div>
 

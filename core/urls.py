@@ -5,7 +5,6 @@ from users.views import auth_page, join_page
 from django.conf.urls.static import static
 from django.conf import settings
 
-app_name = 'users'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
