@@ -31,3 +31,6 @@ def join_page(request):
 
     context = {'form': form}
     return render(request, 'register.html', context)
+
+def profile_page(request):
+    return render(request, 'profile.html')
