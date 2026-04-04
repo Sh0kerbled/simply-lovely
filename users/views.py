@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
 from .forms import UserLoginForm, UserRegistrationForm
+from django.contrib.auth import logout
 
 def auth_page(request):
     if request.method == 'POST':
@@ -34,3 +35,7 @@ def join_page(request):
 
 def profile_page(request):
     return render(request, 'profile.html')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))

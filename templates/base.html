@@ -111,6 +111,7 @@
           {% else %}
           <a
             class="inline-flex h-10 w-10 items-center justify-center rounded-md text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
+            href="{%url 'users:profile_page'%}"
           >
             {{ user.username|first|upper }}
           </a>
