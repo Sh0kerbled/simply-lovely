@@ -11,6 +11,9 @@ class UserLoginForm(AuthenticationForm):
         model = CustomUser
         fields = ('username', 'password')
 
+    error_messages = {
+        'invalid_login': "Your custom 'incorrect username or password' message here.",
+    }
 class UserRegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'block w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 placeholder-gray-400 shadow-sm focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900/50 sm:text-sm transition-all', 'placeholder': 'Pimpy'}))
