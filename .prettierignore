@@ -7,3 +7,5 @@ password_reset_confirm.html
 password_reset_done.html
 password_reset_email.html
 password_reset_complete.html
+profile_edit.html
+404.html

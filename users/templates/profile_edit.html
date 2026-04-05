@@ -1,0 +1,196 @@
+{% extends 'base.html' %} {% block title %}Edit Profile — Simply Lovely{%endblock %} {% block content %}
+<div
+  class="min-h-screen py-12 px-4"
+  style="background: linear-gradient(to bottom, var(--bg-subtle), var(--bg))"
+>
+  <div class="max-w-lg mx-auto">
+    <div class="mb-8">
+      <a
+        href="{% url 'users:profile_page' %}"
+        class="text-sm theme-muted inline-flex items-center gap-1 hover:underline mb-4"
+      >
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M19 12H5" />
+          <path d="m12 19-7-7 7-7" />
+        </svg>
+        Back to profile
+      </a>
+      <h1 class="text-2xl font-bold tracking-tight theme-text">Edit Profile</h1>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-5">
+      {% csrf_token %}
+
+      <div
+        class="rounded-xl border p-6 flex items-center gap-5"
+        style="background: var(--bg); border-color: var(--border)"
+      >
+        <div
+          class="w-20 h-20 rounded-full overflow-hidden shrink-0"
+          style="background: var(--surface)"
+        >
+          {% if user.profile.avatar %}
+          <img
+            src="{{ user.profile.avatar.url }}"
+            class="w-full h-full object-cover"
+            id="avatar-preview"
+          />
+          {% else %}
+          <div
+            class="w-full h-full flex items-center justify-center text-2xl font-bold theme-muted"
+            id="avatar-placeholder"
+          >
+            {{ user.username|first|upper }}
+          </div>
+          <img
+            src=""
+            class="w-full h-full object-cover hidden"
+            id="avatar-preview"
+          />
+          {% endif %}
+        </div>
+        <div>
+          <p class="text-sm font-medium theme-text mb-1">Profile photo</p>
+          <p class="text-xs theme-muted mb-3">JPG or PNG, max 5MB</p>
+          <label
+            class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-opacity"
+            style="background: var(--text); color: var(--bg)"
+            onmouseover="this.style.opacity = '.88'"
+            onmouseout="this.style.opacity = '1'"
+          >
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+            Upload photo
+            <input
+              type="file"
+              name="avatar"
+              accept="image/*"
+              class="hidden"
+              onchange="previewAvatar(this)"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div
+        class="rounded-xl border p-6 space-y-4"
+        style="background: var(--bg); border-color: var(--border)"
+      >
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="block text-sm font-medium theme-text mb-1.5"
+              >Username</label
+            >
+            <input
+              type="text"
+              name="first_name"
+              value="{{ user.first_name }}"
+              placeholder="Pimpy"
+              class="theme-input w-full px-4 py-2.5 rounded-lg border text-sm transition"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium theme-text mb-1.5"
+            >Username</label
+          >
+          <div class="relative">
+            <span
+              class="absolute inset-y-0 left-0 pl-3 flex items-center text-sm theme-muted"
+              >@</span
+            >
+            <input
+              type="text"
+              name="username"
+              value="{{ user.username }}"
+              class="theme-input w-full pl-7 pr-4 py-2.5 rounded-lg border text-sm transition"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium theme-text mb-1.5"
+            >Email</label
+          >
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 theme-muted"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <input
+              type="email"
+              name="email"
+              value="{{ user.email }}"
+              placeholder="you@example.com"
+              class="theme-input w-full pl-10 pr-4 py-2.5 rounded-lg border text-sm transition"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-between gap-3">
+        <a
+          href="{% url 'users:profile_page' %}"
+          class="px-5 py-2.5 rounded-lg text-sm font-medium transition-colors border theme-text"
+          style="border-color: var(--border); background: var(--bg)"
+          onmouseover="this.style.background = 'var(--surface)'"
+          onmouseout="this.style.background = 'var(--bg)'"
+        >
+          Cancel
+        </a>
+        <button
+          type="submit"
+          class="px-6 py-2.5 rounded-lg text-sm font-medium transition-opacity"
+          style="background: var(--text); color: var(--bg)"
+          onmouseover="this.style.opacity = '.88'"
+          onmouseout="this.style.opacity = '1'"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function previewAvatar(input) {
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById("avatar-preview");
+      const placeholder = document.getElementById("avatar-placeholder");
+      preview.src = e.target.result;
+      preview.classList.remove("hidden");
+      if (placeholder) placeholder.classList.add("hidden");
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+</script>
+{% endblock %}

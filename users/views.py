@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, UserEditForm
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 def auth_page(request):
     if request.method == 'POST':
@@ -33,9 +34,22 @@ def join_page(request):
     context = {'form': form}
     return render(request, 'register.html', context)
 
+@login_required
 def profile_page(request):
     return render(request, 'profile.html')
 
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST,request.FILES,instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:profile_edit'))
+    else:
+        form = UserEditForm(instance=request.user)
+    return render(request, 'profile_edit.html', {'form': form})
