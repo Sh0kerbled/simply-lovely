@@ -501,6 +501,15 @@
     </footer>
 
     <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+
       const html = document.documentElement;
       const desktopToggle = document.getElementById("theme-toggle");
       const mobileToggle = document.getElementById("theme-toggle-mobile");
@@ -508,14 +517,15 @@
 
       function setTheme(theme) {
         html.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
         mobileThemeLabel.textContent =
           theme === "dark" ? "Light Mode" : "Dark Mode";
       }
 
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setTheme(systemPrefersDark ? "dark" : "light");
+      // Синхронизируем label при загрузке
+      const current = html.getAttribute("data-theme");
+      mobileThemeLabel.textContent =
+        current === "dark" ? "Light Mode" : "Dark Mode";
 
       function toggleTheme() {
         const current = html.getAttribute("data-theme");

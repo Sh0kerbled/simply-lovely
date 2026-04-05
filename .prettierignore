@@ -2,3 +2,8 @@
 # base.html
 # register.html
 auth.html
+
+password_reset_confirm.html
+password_reset_done.html
+password_reset_email.html
+password_reset_complete.html

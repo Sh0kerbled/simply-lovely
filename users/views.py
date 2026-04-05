@@ -39,6 +39,3 @@ def profile_page(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
-
-def reset_password_page(request):
-    return render(request, 'account_reset_form.html')
