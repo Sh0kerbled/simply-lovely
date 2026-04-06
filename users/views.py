@@ -55,3 +55,7 @@ def profile_edit(request):
     else:
         form = UserEditForm(instance=request.user)
     return render(request, 'profile_edit.html', {'form': form})
+
+def saler_register(request):
+    
+    return render(request, 'saler_register.html')
