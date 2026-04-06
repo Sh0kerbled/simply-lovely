@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
-from .forms import UserLoginForm, UserRegistrationForm, UserEditForm
+from .forms import UserLoginForm, UserRegistrationForm, UserEditForm, SalerRegistrationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -57,5 +57,11 @@ def profile_edit(request):
     return render(request, 'profile_edit.html', {'form': form})
 
 def saler_register(request):
-    
-    return render(request, 'saler_register.html')
+    if request.method == 'POST':
+        form = SalerRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:auth_page'))
+    else:
+        form = SalerRegistrationForm()
+    return render(request, 'saler_register.html', {'form': form})

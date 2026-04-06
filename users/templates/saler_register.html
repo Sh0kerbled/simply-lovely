@@ -11,30 +11,29 @@
     </div>
 
     <div class="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
-      <form>
+      <form method="POST" action="{% url 'users:auth_page' %}">
+        {% csrf_token %}
         <h2 class="text-xl font-semibold text-gray-900 mb-6">
           Personal Information
         </h2>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Username</label
+          >
+          {{form.username}}
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1"
               >First Name</label
             >
-            <input
-              type="text"
-              placeholder="John"
-              class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-            />
+            {{form.first_name}}
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1"
               >Last Name</label
             >
-            <input
-              type="text"
-              placeholder="Doe"
-              class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-            />
+            {{form.last_name}}
           </div>
         </div>
 
@@ -42,11 +41,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-1"
             >Email Address</label
           >
-          <input
-            type="email"
-            placeholder="john@example.com"
-            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-          />
+          {{form.email}}
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
@@ -54,21 +49,13 @@
             <label class="block text-sm font-medium text-gray-700 mb-1"
               >Password</label
             >
-            <input
-              type="password"
-              placeholder="••••••••"
-              class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-            />
+            {{form.password1}}
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1"
               >Confirm Password</label
             >
-            <input
-              type="password"
-              placeholder="••••••••"
-              class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-            />
+            {{form.password2}}
           </div>
         </div>
 
@@ -82,21 +69,13 @@
           <label class="block text-sm font-medium text-gray-700 mb-1"
             >Store Name</label
           >
-          <input
-            type="text"
-            placeholder="My Lovely Store"
-            class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition"
-          />
+          {{form.storeName}}
         </div>
 
         <hr class="border-gray-200 mb-8" />
 
         <div class="flex items-start gap-3 mb-8">
-          <input
-            type="checkbox"
-            id="agree"
-            class="mt-0.5 w-4 h-4 accent-gray-900 cursor-pointer"
-          />
+          {{form.isSaler}}
           <label for="agree" class="text-sm text-gray-500 leading-relaxed">
             I agree to the
             <a

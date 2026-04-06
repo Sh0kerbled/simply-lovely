@@ -45,4 +45,32 @@ class UserEditForm(UserChangeForm):
         model = CustomUser
         fields = ('image', 'username', 'email')
     
-    
+class SalerRegistrationForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    email = forms.EmailField(widget=forms.TextInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    storeName = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
+    }))
+    isSaler = forms.BooleanField(widget=forms.CheckboxInput(attrs={
+        'class': 'mt-0.5 w-4 h-4 accent-gray-900 cursor-pointer'
+    }), required=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'storeName', 'isSaler')
