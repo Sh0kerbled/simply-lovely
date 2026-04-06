@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
-from .forms import UserLoginForm, UserRegistrationForm, UserEditForm, SalerRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, UserEditForm, SalerRegistrationForm, AddProduct
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -36,7 +36,15 @@ def join_page(request):
 
 @login_required
 def profile_page(request):
-    return render(request, 'profile.html')
+    if request.method == 'POST':
+        form = AddProduct(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:profile_page'))
+    else:
+        form = AddProduct()
+
+    return render(request, 'profile.html', {'form': form})
 
 @login_required
 def logout_view(request):
