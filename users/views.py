@@ -46,10 +46,12 @@ def logout_view(request):
 @login_required
 def profile_edit(request):
     if request.method == 'POST':
-        form = UserEditForm(request.POST,request.FILES,instance=request.user)
+        form = UserEditForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('users:profile_edit'))
+            return HttpResponseRedirect(reverse('users:profile_page'))
+        else:
+            print(form.errors)
     else:
         form = UserEditForm(instance=request.user)
     return render(request, 'profile_edit.html', {'form': form})

@@ -78,7 +78,7 @@
             Upload photo
             <input
               type="file"
-              name="avatar"
+              name="image"
               accept="image/*"
               class="hidden"
               onchange="previewAvatar(this)"
@@ -91,21 +91,6 @@
         class="rounded-xl border p-6 space-y-4"
         style="background: var(--bg); border-color: var(--border)"
       >
-        <div class="grid grid-cols-1 gap-4">
-          <div>
-            <label class="block text-sm font-medium theme-text mb-1.5"
-              >Username</label
-            >
-            <input
-              type="text"
-              name="first_name"
-              value="{{ user.first_name }}"
-              placeholder="Pimpy"
-              class="theme-input w-full px-4 py-2.5 rounded-lg border text-sm transition"
-            />
-          </div>
-        </div>
-
         <div>
           <label class="block text-sm font-medium theme-text mb-1.5"
             >Username</label
@@ -154,7 +139,6 @@
         </div>
       </div>
 
-      <!-- Actions -->
       <div class="flex items-center justify-between gap-3">
         <a
           href="{% url 'users:profile_page' %}"

@@ -28,15 +28,21 @@ class UserRegistrationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
 class UserEditForm(UserChangeForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-opacity'
-    }))
     image = forms.ImageField(widget=forms.FileInput(attrs={
-        'class': 'block text-sm font-medium theme-text mb-1.5'
+        'class': 'theme-input w-full pl-10 pr-4 py-2.5 rounded-lg border text-sm transition'
     }))
+
+    email = forms.EmailField(widget=forms.TextInput(attrs={
+        'class': 'theme-input w-full pl-7 pr-4 py-2.5 rounded-lg border text-sm transition'
+    }), required=False)
+
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'theme-input w-full pl-7 pr-4 py-2.5 rounded-lg border text-sm transition'
+    }))
+
     password = None
     class Meta:
         model = CustomUser
-        fields = ('username', 'image')
+        fields = ('image', 'username', 'email')
     
     

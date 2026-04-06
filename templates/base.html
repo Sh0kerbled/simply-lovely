@@ -282,14 +282,25 @@
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </a>
+          {% else %} {% if user.image %}
+          <a
+            class="theme-hover inline-flex h-10 w-10 items-center justify-center rounded-md theme-text transition-colors"
+            href="{% url 'users:profile_page' %}"
+          >
+            <img
+              src="{{user.image.url}}"
+              class="theme-hover inline-flex h-10 w-10 items-center justify-center rounded-md theme-text transition-colors"
+              alt=""
+            />
+          </a>
           {% else %}
           <a
             class="theme-hover inline-flex h-10 w-10 items-center justify-center rounded-md theme-text transition-colors"
             href="{% url 'users:profile_page' %}"
           >
-            {{ user.username|first|upper }}
+            {{user.username|first|upper}}
           </a>
-          {% endif %}
+          {% endif %} {% endif %}
 
           <button
             class="theme-hover relative inline-flex h-10 w-10 items-center justify-center rounded-md theme-text transition-colors"

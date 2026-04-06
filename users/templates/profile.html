@@ -9,9 +9,9 @@
           <div
             class="w-24 h-24 rounded-full bg-gray-200 overflow-hidden ring-4 ring-white shadow-md"
           >
-            {% if user.profile.avatar %}
+            {% if user.image %}
             <img
-              src="{{ user.profile.avatar.url }}"
+              src="{{ user.image.url }}"
               alt="{{ user.username }}"
               class="w-full h-full object-cover"
             />
