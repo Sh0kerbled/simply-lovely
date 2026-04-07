@@ -287,7 +287,11 @@
             class="theme-hover inline-flex h-10 w-10 items-center justify-center rounded-md theme-text transition-colors"
             href="{% url 'users:profile_page' %}"
           >
-            <img src="{{user.image.url}}" alt="" />
+            <img
+              src="{{user.image.url}}"
+              class="h-10 w-10 rounded-3xl object-cover object-center theme-hover transition-colors"
+              alt=""
+            />
           </a>
           {% else %}
           <a
