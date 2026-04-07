@@ -96,7 +96,3 @@ class AddProduct(forms.ModelForm):
                 'class': 'w-full border border-gray-200 rounded-lg pl-8 pr-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 transition'
             }),
         }
-
-class sellerGoodsCount(forms.ModelForm):
-    class Meta:
-        model = Products
