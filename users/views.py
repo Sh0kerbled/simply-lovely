@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
 from django.urls import reverse
 from .forms import UserLoginForm, UserRegistrationForm, UserEditForm, SalerRegistrationForm, AddProduct
+from .models import CustomUser
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -40,6 +40,12 @@ def profile_page(request):
         form = AddProduct(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
+            user = request.user
+            if user.goodsCount is None:
+                user.goodsCount = 0
+            
+            user.goodsCount += 1
+            user.save()
             return HttpResponseRedirect(reverse('users:profile_page'))
     else:
         form = AddProduct()
